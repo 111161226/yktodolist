@@ -1,21 +1,21 @@
 <template>
   <div>
-    <div>ItemList</div>
+    <div>TODOリスト</div>
     <div v-for="item in items" :key="item.name">
-      <div class="item" :class="{ over500: item.price >= 500 }">
-        <div class="name">名前: {{ item.name }}</div>
-        <div class="price">{{ item.price }} 円</div>
-        <div v-if="item.price >= 10000">高額商品</div>
+      <div class="item" :class="{ ok: item.percent >= 100  }">
+        <div class="name">タスク: {{ item.name }}</div>
+        <div v-if="item.percent >= 100">完</div>
+        <div v-if="item.percent < 100">未完</div>
       </div>
     </div>
     <div>
       <label>
-        名前
+        タスク
         <input v-model="newItemName" type="text" />
       </label>
       <label>
-        価格
-        <input v-model="newItemPrice" type="number" />
+        状態
+        <input v-model="newItemPrice" type="text" />
       </label>
       <button @click="addItem">add</button>
     </div>
@@ -28,23 +28,22 @@
   export default {
     setup() {
     const items = ref([
-      { name: "たまご", price: 100 },
-      { name: "りんご", price: 160 },
+      { name: "TODOリスト", percent: 100 },
     ]);
     const newItemName = ref("");
-    const newItemPrice = ref(0);
+    const newItempercent = ref(0);
 
     const addItem = () => {
-      items.value.push({ name: newItemName.value, price: newItemPrice.value });
+      items.value.push({ name: newItemName.value, percent: newItemZyoutai.value });
     };
 
-    return { items, newItemName, newItemPrice, addItem };
+    return { items, newItemName, newItempercent, addItem };
   },
   };
   </script>
   
   <style>
-  .over500 {
+  .ok {
   color: red;
 }
   </style>

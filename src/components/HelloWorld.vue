@@ -2,6 +2,7 @@
   <div>
     <h1>{{ msg }}</h1>
     <counter />
+    <item-list />
   </div>
 </template>
 
